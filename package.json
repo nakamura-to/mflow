@@ -1,0 +1,12 @@
+{
+  "name": "mflow",
+  "version": "0.0.1",
+  "description": "monad-style flow control library",
+  "keywords": ["async", "flow", "generator", "monad", "coroutine"],
+  "author": "Toshihiro Nakamura <toshihiro.nakamura@gmail.com>",
+  "repository": {"type": "git", "url": "git://github.com/nakamura-to/mflow.git"},
+  "devDependencies": {
+    "mocha": "~1.10.0"
+  },
+  "license": "MIT"
+}
