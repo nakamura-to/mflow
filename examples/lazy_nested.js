@@ -5,19 +5,19 @@ var lazy = mflow.lazy;
 var x = 10;
 
 var lazyValue1 = lazy(function *() {
-	return x + 10;
+  return x + 10;
 });
 
 var lazyValue2 = lazy(function *() {
-	return x * 10;
+  return x * 10;
 });
 
 function add(value1, value2) {
-	return lazy(function *() {
-		var a = yield value1;
-		var b = yield value2;
-		return a + b; 
-	});
+  return lazy(function *() {
+    var a = yield value1;
+    var b = yield value2;
+    return a + b; 
+  });
 };
 
 var result1 = add(lazyValue1, lazyValue2);

@@ -3,11 +3,11 @@ var mflow = require('..');
 var maybe = mflow.maybe;
 
 function add(x, y) {
-	return maybe(function *() {
-		var a = yield x;
-		var b = yield y;
-		return a + b;
-	});
+  return maybe(function *() {
+    var a = yield x;
+    var b = yield y;
+    return a + b;
+  });
 }
 
 var result1 = add(1, 2);
