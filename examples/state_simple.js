@@ -16,13 +16,13 @@ function push(value) {
 }
 
 var flow = state(function* () {
-	var a = yield pop();
-	if (a === 5) {
-		yield push(5);
-	} else {
-		yield push(3);
-		yield push(8);
-	}
+  var a = yield pop();
+  if (a === 5) {
+    yield push(5);
+  } else {
+    yield push(3);
+    yield push(8);
+  }
   return 10;
 });
 

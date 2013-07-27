@@ -37,14 +37,14 @@ var mflow = require('mflow');
 var async = mflow.async;
 
 var flow = async(function *() {
-	var a = yield function(f) { fs.readFile('file1', 'utf8', f); };
-	var b = yield function(f) { fs.readFile('file2', 'utf8', f); };
-	return a + b;
+  var a = yield function(f) { fs.readFile('file1', 'utf8', f); };
+  var b = yield function(f) { fs.readFile('file2', 'utf8', f); };
+  return a + b;
 });
 
 flow(function (err, data) {
-	if (err) throw err;
-	console.log(data);
+  if (err) throw err;
+  console.log(data);
 });
 ```
 
@@ -79,14 +79,14 @@ var mflow = require('mflow');
 var async = mflow.async;
 
 var flow = async(function *() {
-	var a = yield function(f) { fs.readFile('file1', 'utf8', f); };
-	var b = yield function(f) { fs.readFile('file2', 'utf8', f); };
-	return a + b;
+  var a = yield function(f) { fs.readFile('file1', 'utf8', f); };
+  var b = yield function(f) { fs.readFile('file2', 'utf8', f); };
+  return a + b;
 });
 
 flow(function (err, data) {
-	if (err) throw err;
-	console.log(data);
+  if (err) throw err;
+  console.log(data);
 });
 ```
 
@@ -103,17 +103,17 @@ var mflow = require('mflow');
 var async = mflow.async;
 
 var flow = async(function *() {
-	var a = function(f) { fs.readFile('file1', 'utf8', f); };
-	var b = function(f) { fs.readFile('file2', 'utf8', f); };
-	var results = yield async.join(a, b);
-	// instead of multiple arguments, you can use an array.
-	// var results = yield async.join([a, b]);
-	return results[0] + results[1];
+  var a = function(f) { fs.readFile('file1', 'utf8', f); };
+  var b = function(f) { fs.readFile('file2', 'utf8', f); };
+  var results = yield async.join(a, b);
+  // instead of multiple arguments, you can use an array.
+  // var results = yield async.join([a, b]);
+  return results[0] + results[1];
 });
 
 flow(function (err, data) {
-	if (err) throw err;
-	console.log(data);
+  if (err) throw err;
+  console.log(data);
 });
 
 ```
@@ -137,7 +137,7 @@ var lazy = mflow.lazy;
 
 var x = 10;
 var result = lazy(function *() {
-	return x + 10;
+  return x + 10;
 });
 
 console.log(result()); // 20
@@ -154,11 +154,11 @@ var lazyValue1 = lazy(function *() { return x + 10; });
 var lazyValue2 = lazy(function *() { return x * 10; });
 
 function add(value1, value2) {
-	return lazy(function *() {
-		var a = yield value1;
-		var b = yield value2;
-		return a + b; 
-	});
+  return lazy(function *() {
+    var a = yield value1;
+    var b = yield value2;
+    return a + b; 
+  });
 };
 
 console.log(add(lazyValue1, lazyValue2)); // 120
@@ -186,11 +186,11 @@ var mflow = require('mflow');
 var maybe = mflow.maybe;
 
 function add(x, y) {
-	return maybe(function *() {
-		var a = yield x;
-		var b = yield y;
-		return a + b;
-	});
+  return maybe(function *() {
+    var a = yield x;
+    var b = yield y;
+    return a + b;
+  });
 }
 
 console.log(add(1, 2));    // 3
@@ -216,27 +216,27 @@ var mflow = require('mflow');
 var state = mflow.state;
 
 function pop() {
-	return function (s) {
-		return [s.shift(), s];
-	};
+  return function (s) {
+    return [s.shift(), s];
+  };
 }
  
 function push(value) {
-	return function (s) {
-		s.unshift(value);
-		return [null, s];
-	};
+  return function (s) {
+    s.unshift(value);
+    return [null, s];
+  };
 }
 
 var flow = state(function* () {
-	var a = yield pop();
-	if (a === 5) {
-		yield push(5);
-	} else {
-		yield push(3);
-		yield push(8);
-	}
-	return 10;
+  var a = yield pop();
+  if (a === 5) {
+    yield push(5);
+  } else {
+    yield push(3);
+    yield push(8);
+  }
+  return 10;
 });
 
 var result = flow([9, 0, 2, 1, 0]);
@@ -254,20 +254,20 @@ Gets a flow's state.
 
 ```js
 var pop = function () { 
-	return state(function *() {
-		var s = yield state.get();
-		var ret = s.shift();
-		yield state.put(s);
-		return ret;
-	});
+  return state(function *() {
+    var s = yield state.get();
+    var ret = s.shift();
+    yield state.put(s);
+    return ret;
+  });
 };
 
 var push = function (value) {
-	return state(function *() {
-		var s = yield state.get();
-		s.unshift(value);
-		yield state.put(s);
-	});
+  return state(function *() {
+    var s = yield state.get();
+    s.unshift(value);
+    yield state.put(s);
+  });
 };
 ```
 
