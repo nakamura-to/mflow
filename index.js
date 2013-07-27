@@ -166,6 +166,7 @@ function state(fn) {
   function run(state) {
     var gen = fn();
     var ret = gen.next();
+    var f;
     var pair;
     var value;
     while (!ret.done) {
