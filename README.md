@@ -216,16 +216,16 @@ var mflow = require('mflow');
 var state = mflow.state;
 
 function pop() {
-  return function (s) {
-    return [s.shift(), s];
-  };
+	return function (s) {
+		return [s.shift(), s];
+	};
 }
  
 function push(value) {
-  return function (s) {
-    s.unshift(value);
-    return [null, s];
-  };
+	return function (s) {
+		s.unshift(value);
+		return [null, s];
+	};
 }
 
 var flow = state(function* () {
@@ -236,7 +236,7 @@ var flow = state(function* () {
 		yield push(3);
 		yield push(8);
 	}
-  return 10;
+	return 10;
 });
 
 var result = flow([9, 0, 2, 1, 0]);
@@ -254,20 +254,20 @@ Gets a flow's state.
 
 ```js
 var pop = function () { 
-  return state(function *() {
-    var s = yield state.get();
-    var ret = s.shift();
-    yield state.put(s);
-    return ret;
-  });
+	return state(function *() {
+		var s = yield state.get();
+		var ret = s.shift();
+		yield state.put(s);
+		return ret;
+	});
 };
 
 var push = function (value) {
-  return state(function *() {
-    var s = yield state.get();
-    s.unshift(value);
-    yield state.put(s);
-  });
+	return state(function *() {
+		var s = yield state.get();
+		s.unshift(value);
+		yield state.put(s);
+	});
 };
 ```
 
