@@ -161,8 +161,8 @@ function add(value1, value2) {
   });
 };
 
-console.log(add(lazyValue1, lazyValue2)); // 120
-console.log(add(1, 2)); // 3
+console.log(add(lazyValue1, lazyValue2)()); // 120
+console.log(add(1, 2)()); // 3
 ```
 
 ## maybe(fn)
